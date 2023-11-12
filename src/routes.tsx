@@ -119,8 +119,11 @@ export const routers = createBrowserRouter([
 
     ],
   },
+
   {
     path: "*",
     element: "NotFound Page nhé",
   },
+ 
+  
 ]);

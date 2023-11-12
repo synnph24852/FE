@@ -1,28 +1,36 @@
-import React, { useState,  } from 'react';
+
+import React, { useState } from "react";
+
+
+
 import {
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
-  UnorderedListOutlined,
+UnorderedListOutlined,
   DeleteOutlined
-} from '@ant-design/icons';
+} from "@ant-design/icons";
+
+import Order from "./comp/order.tsx";
+
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+
 
 import { Link, Outlet } from 'react-router-dom';
 import AdminUser from '../../pages/admin/user/user';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
   label: React.ReactNode,
   key: React.Key,
   icon?: React.ReactNode,
-  children?: MenuItem[],
+  children?: MenuItem[]
 ): MenuItem {
   return {
     key,
@@ -33,6 +41,7 @@ function getItem(
 }
 
 const items: MenuItem[] = [
+
   getItem(<Link to="/">Dashboard</Link>, '1', <PieChartOutlined />),
   getItem('Option 2', '2', <DesktopOutlined />),
 
@@ -75,6 +84,7 @@ const items: MenuItem[] = [
     getItem(<Link to="/admin/imageProduct/add">Add</Link>, '20'),
     getItem(<Link to="/admin/imageProduct/update/:id">update</Link>, '21'),
   ]),
+
 ];
 
 
@@ -90,13 +100,21 @@ const AdminLayout: React.FC = () => {
  
   
   return (
+
     
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={items}
+        />
       </Sider>
       <Layout>
+
       <header className="bg-gray-50">
   <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
     <div className="flex items-center sm:justify-between sm:gap-4">
@@ -247,15 +265,19 @@ const AdminLayout: React.FC = () => {
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
           <Outlet/>
+
           </div>
           
         </Content>
+
        
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
         
+
       </Layout>
     </Layout>
   );
 };
 
 export default AdminLayout;
+
