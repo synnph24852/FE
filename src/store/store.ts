@@ -1,64 +1,20 @@
-
-
+import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import userApi, { userReducer } from "../api/user";
+import saleApi from "../api/sale/sale.api";
+import { counterReducer } from "./slices/Counter/counter.slice";
 
-// import authApi, { authReducer } from '@/api/auth';
-import imageProductApi, { imageProductReducer } from '@/api/imageProduct';
-import productApi, { productReducer } from '@/api/product';
-import sizeApi, { sizeReducer } from '@/api/sizes';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+const middlewares = [saleApi.middleware];
 
-import {
-    FLUSH,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-    REHYDRATE,
-    persistReducer,
-    persistStore,
-} from 'redux-persist';
-
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import customerApi, { customerReducer } from "../api/customer";
-import roleApi, { roleReducer } from "../api/role";
-
-
-import storage from 'redux-persist/lib/storage';
-
-
-const persistConfig = {
-    key: 'root',
-    storage,
-    whitelist: ['cart', 'auths']
-}
-const rootReducer = combineReducers({
-    [productApi.reducerPath]: productReducer,
-    [sizeApi.reducerPath]: sizeReducer,
-    [imageProductApi.reducerPath]: imageProductReducer,
-    [userApi.reducerPath]: userReducer,
-    [customerApi.reducerPath]: customerReducer,
-    [roleApi.reducerPath]: roleReducer,
-
-    // [authApi.reducerPath]: authReducer
-})
-const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware,userApi.middleware, customerApi.middleware, roleApi.middleware]
-
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }).concat(...middleware),
-})
+    reducer: {
+        counter: counterReducer,
+        [saleApi.reducerPath]: saleApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(...middlewares),
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-
-export default persistStore(store);
-
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
