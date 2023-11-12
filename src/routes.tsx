@@ -1,28 +1,44 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import { AdminLayout, ClientLayout } from "./layout";
+import SaleAdminPage from "./pages/Admin/SaleAdminPage";
+import HomePage from "./pages/Main/HomePage";
+import ProductDetailPage from "./pages/Main/ProductDetailPage";
 
-import AdminUser from "./pages/admin/user/user";
-import AdminUserAdd from "./pages/admin/user/add";
-import AdminEditUser from "./pages/admin/user/edit";
-import AdminCustomer from "./pages/admin/customer/customer";
-import AdminCustomerAdd from "./pages/admin/customer/add";
-import AdminCustomerEdit from "./pages/admin/customer/edit";
-import AdminRole from "./pages/admin/role/role";
-import AdminRoleAdd from "./pages/admin/role/add";
-
-import Product from "./pages/admin/Product/Product"
-
-
-import AddProduct from "./pages/admin/Product/AddProduct"
-import Size from "./pages/admin/size/size"
-import AddSize from "./pages/admin/size/AddSize"
-import UpdateProduct from "./pages/admin/Product/UpdateProduct";
-import RecycleBin from "./pages/admin/Product/recycle-bin";
-import UpdateSize from "./pages/admin/size/UpdateSize";
-import ImageProduct from "./pages/admin/imageProduct/imageProduct"
-import AddImage from "./pages/admin/imageProduct/AddImage";
 export const routers = createBrowserRouter([
+<<<<<<< HEAD
+    {
+        path: "/",
+        element: <ClientLayout />,
+        children: [
+            {
+                index: true,
+                element: <HomePage />,
+            },
+            {
+                path: "/products/:id",
+                element: <ProductDetailPage />,
+            },
+        ],
+    },
+    {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+            {
+                index: true,
+                element: "Page admin here",
+            },
+            {
+                path: "sale",
+                element: <SaleAdminPage />,
+            },
+        ],
+    },
+    {
+        path: "*",
+        element: "NotFound Page nhé",
+    },
+=======
 
   {
     path: "/",
@@ -126,4 +142,5 @@ export const routers = createBrowserRouter([
   },
  
   
+>>>>>>> 9a450812c4defd8df925bccd59f4d7d8a94d4b48
 ]);
