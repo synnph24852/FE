@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import saleApi from "./sale/sale.api";
+import saleApi from "../api/sale/sale.api";
 import { counterReducer } from "./slices/Counter/counter.slice";
 
 const middlewares = [saleApi.middleware];
