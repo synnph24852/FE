@@ -1,11 +1,25 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AdminLayout, ClientLayout } from "./layout";
-import SaleAdminPage from "./pages/Admin/SaleAdminPage";
 import HomePage from "./pages/Main/HomePage";
 import ProductDetailPage from "./pages/Main/ProductDetailPage";
+import AddProduct from "./pages/admin/Product/AddProduct";
+import Product from "./pages/admin/Product/Product";
+import { default as UpdateProduct, default as UpdateSize } from "./pages/admin/Product/UpdateProduct";
+import RecycleBin from "./pages/admin/Product/recycle-bin";
+import AdminCustomerAdd from "./pages/admin/customer/add";
+import AdminCustomer from "./pages/admin/customer/customer";
+import AdminCustomerEdit from "./pages/admin/customer/edit";
+import AddImageProduct from "./pages/admin/imageProduct/AddImage";
+import AdminRoleAdd from "./pages/admin/role/add";
+import AdminRole from "./pages/admin/role/role";
+import AddSize from "./pages/admin/size/AddSize";
+import Size from "./pages/admin/size/size";
+import AdminUserAdd from "./pages/admin/user/add";
+import AdminEditUser from "./pages/admin/user/edit";
+import AdminUser from "./pages/admin/user/user";
+import SaleAdminPage from "./pages/admin/SaleAdminPage";
 
 export const routers = createBrowserRouter([
-<<<<<<< HEAD
     {
         path: "/",
         element: <ClientLayout />,
@@ -20,41 +34,19 @@ export const routers = createBrowserRouter([
             },
         ],
     },
-    {
-        path: "/admin",
-        element: <AdminLayout />,
-        children: [
-            {
-                index: true,
-                element: "Page admin here",
-            },
-            {
-                path: "sale",
-                element: <SaleAdminPage />,
-            },
-        ],
-    },
-    {
-        path: "*",
-        element: "NotFound Page nhé",
-    },
-=======
-
-  {
-    path: "/",
-    element: <ClientLayout />,
-    children: [
-      {
-        // index: true,
-        // element: <MyComponent />,
-      },
-    ],
-  },
 
   {
     path: "/admin",
     element: <AdminLayout />,
     children: [
+      {
+        index: true,
+        element: "Page admin here",
+    },
+    {
+        path: "sale",
+        element: <SaleAdminPage />,
+    },
       {
         path: "product",
         element: <Product products={[]}/>,
@@ -91,8 +83,7 @@ export const routers = createBrowserRouter([
       {
         path: "role/add",
         element: <AdminRoleAdd />,
-      },
-
+      },{
         path: "product/add",
         element: <AddProduct/>,
   
@@ -117,13 +108,13 @@ export const routers = createBrowserRouter([
         path: "size/update/:id",
         element: <UpdateSize/>,
       },
-      {
-        path: "imageProduct",
-        element: <ImageProduct/>,
-      },
+      // {
+      //   path: "imageProduct",
+      //   element: <ImageProduct/>,
+      // },
       {
         path: "imageProduct/add",
-        element: <AddImage/>,
+        element: <AddImageProduct/>,
       },
       // {
       //   path: "size/update/:id",
@@ -142,5 +133,4 @@ export const routers = createBrowserRouter([
   },
  
   
->>>>>>> 9a450812c4defd8df925bccd59f4d7d8a94d4b48
 ]);

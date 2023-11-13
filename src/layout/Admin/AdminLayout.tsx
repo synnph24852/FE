@@ -1,40 +1,17 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { Outlet } from "react-router-dom";
-=======
-
-import React, { useState } from "react";
 
 
 
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-UnorderedListOutlined,
-  DeleteOutlined
-} from "@ant-design/icons";
 
-import Order from "./comp/order.tsx";
-
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-
-
-import { Link, Outlet } from 'react-router-dom';
-import AdminUser from '../../pages/admin/user/user';
->>>>>>> 9a450812c4defd8df925bccd59f4d7d8a94d4b48
 
 const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
-<<<<<<< HEAD
 function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[]): MenuItem {
     return {
         key,
@@ -50,67 +27,6 @@ const items: MenuItem[] = [
     getItem("User", "sub1", <UserOutlined />, [getItem("Tom", "3"), getItem("Bill", "4"), getItem("Alex", "5")]),
     getItem("Team", "sub2", <TeamOutlined />, [getItem("Team 1", "6"), getItem("Team 2", "8")]),
     getItem("Files", "9", <FileOutlined />),
-=======
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-
-  getItem(<Link to="/">Dashboard</Link>, '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-
-  getItem('User', 'sub1',  <UserOutlined /> , [
-    getItem('List User', '3', <Link to="/admin/user"/> ),
-    getItem('Thêm User', '4', <Link to="/admin/user/add"/>),
-  ]),
-  getItem('Customer', 'sub3',  <UserOutlined /> , [
-    getItem('List Customer', '5', <Link to="/admin/customer"/> ),
-    getItem('Thêm Customer', '7', <Link to="/admin/customer/add"/>),
-  ]),
-  getItem('Role', 'sub4',  <UserOutlined /> , [
-    getItem('List Role', '10', <Link to="/admin/role"/> ),
-    getItem('Thêm Role', '11', <Link to="/admin/role/add"/>),
-
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3', ),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
-
-  ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
-  getItem(<Link to="/admin/product">Product</Link>, '10', <UnorderedListOutlined/>,
-  [
-    getItem(<Link to="/admin/product">List</Link>, '11', ),
-    getItem(<Link to="/admin/product/add">Add</Link>, '12'),
-    getItem(<Link to="/admin/product/recycle"><DeleteOutlined /></Link>, '13'),
-
-  ]),
-  getItem(<Link to="/admin/size">Size</Link>, '14', <UnorderedListOutlined/>,
-  [
-    getItem(<Link to="/admin/size">List</Link>, '15', ),
-    getItem(<Link to="/admin/size/add">Add</Link>, '16'),
-    getItem(<Link to="/admin/size/update/:id">update</Link>, '70')
-  ]),
-  getItem(<Link to="/admin/imageProduct">ImgProduct</Link>, '18', <UnorderedListOutlined/>,
-  [
-    getItem(<Link to="/admin/imageProduct">List</Link>, '19', ),
-    getItem(<Link to="/admin/imageProduct/add">Add</Link>, '20'),
-    getItem(<Link to="/admin/imageProduct/update/:id">update</Link>, '21'),
-  ]),
-
->>>>>>> 9a450812c4defd8df925bccd59f4d7d8a94d4b48
 ];
 
 const App: React.FC = () => {
@@ -135,42 +51,12 @@ const App: React.FC = () => {
                                     Search{" "}
                                 </label>
 
-<<<<<<< HEAD
                                 <input
                                     className="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
                                     id="search"
                                     type="search"
                                     placeholder="Search website..."
                                 />
-=======
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
- 
-  
-  return (
-
-    
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-          items={items}
-        />
-      </Sider>
-      <Layout>
-
-      <header className="bg-gray-50">
-  <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-    <div className="flex items-center sm:justify-between sm:gap-4">
-      <div className="relative hidden sm:block">
-        <label className="sr-only" form="search"> Search </label>
->>>>>>> 9a450812c4defd8df925bccd59f4d7d8a94d4b48
 
                                 <button
                                     type="button"
@@ -285,7 +171,6 @@ const App: React.FC = () => {
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
-<<<<<<< HEAD
             Bill is a cat.
           </div> */}
                     <Outlet />
@@ -297,22 +182,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-=======
-          <Outlet/>
-
-          </div>
-          
-        </Content>
-
-       
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
-        
-
-      </Layout>
-    </Layout>
-  );
-};
-
-export default AdminLayout;
-
->>>>>>> 9a450812c4defd8df925bccd59f4d7d8a94d4b48
