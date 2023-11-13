@@ -1,23 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AdminLayout, ClientLayout } from "./layout";
+import { AdminLayout, ClientLayout } from "./pages/layout";
 import HomePage from "./pages/Main/HomePage";
 import ProductDetailPage from "./pages/Main/ProductDetailPage";
-import AddProduct from "./pages/admin/Product/AddProduct";
-import Product from "./pages/admin/Product/Product";
-import { default as UpdateProduct, default as UpdateSize } from "./pages/admin/Product/UpdateProduct";
-import RecycleBin from "./pages/admin/Product/recycle-bin";
-import AdminCustomerAdd from "./pages/admin/customer/add";
-import AdminCustomer from "./pages/admin/customer/customer";
-import AdminCustomerEdit from "./pages/admin/customer/edit";
-import AddImageProduct from "./pages/admin/imageProduct/AddImage";
-import AdminRoleAdd from "./pages/admin/role/add";
-import AdminRole from "./pages/admin/role/role";
-import AddSize from "./pages/admin/size/AddSize";
-import Size from "./pages/admin/size/size";
-import AdminUserAdd from "./pages/admin/user/add";
-import AdminEditUser from "./pages/admin/user/edit";
-import AdminUser from "./pages/admin/user/user";
-import SaleAdminPage from "./pages/admin/SaleAdminPage";
+import AddProduct from "./components/admin/Product/AddProduct";
+import Product from "./components/admin/Product/Product";
+import { default as UpdateProduct, default as UpdateSize } from "./components/admin/Product/UpdateProduct";
+import RecycleBin from "./components/admin/Product/recycle-bin";
+import AdminCustomerAdd from "./components/admin/customer/add";
+import AdminCustomer from "./components/admin/customer/customer";
+import AdminCustomerEdit from "./components/admin/customer/edit";
+import AddImageProduct from "./components/admin/imageProduct/AddImage";
+import AdminRoleAdd from "./components/admin/role/add";
+import AdminRole from "./components/admin/role/role";
+import AddSize from "./components/admin/size/AddSize";
+import Size from "./components/admin/size/size";
+import AdminUserAdd from "./components/admin/user/add";
+import AdminEditUser from "./components/admin/user/edit";
+import AdminUser from "./components/admin/user/user";
+import SaleAdminPage from "./components/admin/SaleAdminPage";
+import PaymentAdmin from "./components/admin/PaymentAdmin";
 
 export const routers = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const routers = createBrowserRouter([
     {
         path: "sale",
         element: <SaleAdminPage />,
+    },
+    {
+        path: "payment",
+        element: <PaymentAdmin />,
     },
       {
         path: "product",
