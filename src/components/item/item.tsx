@@ -48,7 +48,7 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                     <div className="prd-sale absolute top-2 left-1 min-w-[60px]">
                         <div className="py-[2px] mb-1 bg-pink-600">
                             <span className=" m-1 block  rounded-full text-center text-sm font-medium text-white">
-                                20% SALE
+                                {product?.sale} SALE
                             </span>   </div>
                         <div className="py-[2px] bg-[#33c7fd]">
                             <span className=" m-1 block  rounded-full text-center text-sm font-medium text-white">
@@ -82,16 +82,12 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             <div className="list-color">
                                 <ul className="flex flex-col gap-3">
                                     <li>
-                                        {
-                                            color?.color.map((color: IColor) => (
-                                                <div className="flex gap-2">
-
-                                                    <span className="text-[#d34949] text-2xl  font-semibold   text-base">
-                                                        {color.name}
-                                                    </span>
-                                                </div>
-                                            ))
-                                        }
+                                    <select name="color" id="color">
+                                                {product?.colorSizes.map((colorSize) =>
+                                                    // <option key={colorSize._id} value={colorSize.color}>{colorSize.color}</option>
+                                                    <option className={`text-${colorSize.color}-500`}></option>
+                                                )}
+                                            </select>
                                     </li>
                                 </ul>
                             </div>

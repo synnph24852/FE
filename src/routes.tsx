@@ -56,6 +56,9 @@ import Orderr from "./pages/layout/Users/order/Order";
 import ListCategory from "./pages/layout/Users/List-Category/ListCategory";
 import Signin from "./pages/layout/Users/Signin/signin";
 import Signup from "./pages/layout/Users/Signup/signup";
+import AddColor from "./components/admin/color/add";
+import UpdateColor from "./components/admin/color/update";
+import Color from "./components/admin/color/list";
 
 
 
@@ -270,6 +273,18 @@ export const routers = createBrowserRouter([
       {
         path: "role/edit/:id",
         element: <AdminRoleEdit/>,
+      },
+      {
+        path: "color",
+        element: <Color/>,
+      },
+      {
+        path: "color/add",
+        element: <AddColor/>,
+      },
+      {
+        path: "color/edit/:id",
+        element: <UpdateColor/>,
       },
       {
         path: "order",
