@@ -62,7 +62,6 @@ const DanhSachTinTuc = () => {
                                     <th className="whitespace-nowrap py-4 font-medium text-gray-900 text-left px-5">
                                         <div className="flex items-center">
                                             <div className="mr-2">Trạng Thái</div>
-
                                         </div>
                                     </th>
                                     <th className="whitespace-nowrap py-4 font-medium text-gray-900 text-left px-5">
@@ -76,12 +75,19 @@ const DanhSachTinTuc = () => {
                                 {tintucData?.length ? (
                                     tintucData.map((tintuc, index) => (
                                         <tr key={index}>
-                                            <td className="whitespace-nowrap font-medium text-gray-900 flex text-left my-5 mx-2 ">
+                                            <td className="whitespace-nowrap font-medium text-gray-900 flex text-left my-5 mx-2 max-w-100 ">
                                                 <div className="flex items-center">
                                                     <p className="text-xs lg:text-base md:text-xl  mx-2"> {tintuc.tieude}</p>
                                                 </div>
                                             </td>
-                                            <td className="whitespace-nowrap  text-gray-700 py-4 ">
+                                             <td className="whitespace-nowrap  text-gray-700 py-4 ">
+                                            <div className="items-center ">
+                                                <p className="text-xs lg:text-base md:text-xl flex ">
+                                                   <ImagePriview width={20} listImage={tintuc.image} />
+                                                </p>
+                                            </div>
+                                        </td>
+                                            <td className="whitespace-nowrap  text-gray-700 py-4  w-200">
                                                 <div className="items-center">
                                                     <p className="text-xs lg:text-base md:text-xl ">
                                                         {tintuc.noidung}
@@ -95,13 +101,7 @@ const DanhSachTinTuc = () => {
                                                     </p>
                                                 </div>
                                             </td>
-                                            <td className="whitespace-nowrap  text-gray-700 py-4 ">
-                                            <div className="items-center ">
-                                                <p className="text-xs lg:text-base md:text-xl flex ">
-                                                   <ImagePriview width={20} listImage={tintuc.image} />
-                                                </p>
-                                            </div>
-                                        </td>
+                                           
                                             <td className="whitespace-nowrap ">
                                                 <div className="flex items-center">
                                                     <Link

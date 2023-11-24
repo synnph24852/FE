@@ -20,6 +20,7 @@ const Comment_Rely = () => {
   console.log('UserId from localStorage:', fullname);
   const [addCustomer,  { isLoading: isAddingComment }] = useAddCommentMutation();
   const [form] = Form.useForm();
+  const isLoggedIn = userId && fullname;
   const onFinish: SubmitHandler<Icomment> = (values) => {
     if (userId) {
       values.productId = id;
@@ -28,9 +29,9 @@ const Comment_Rely = () => {
       addCustomer(values)
         .unwrap()
         .then((data) => {
-          console.log('Bình luận được thêm thành công:', data);
           refetch();
           form.resetFields(['content']);
+         
         })
         .catch((error) => {
           console.error('Lỗi khi thêm bình luận:', error);
@@ -62,7 +63,7 @@ const Comment_Rely = () => {
             placeholder="Xin mời để lại bình luận, đánh giá"
           />
         </Form.Item>
-
+  
         <Form.Item wrapperCol={{ offset: 8, span: 16 }} className="ml-auto">
           <Button type="primary" danger htmlType="submit" className="flex items-center gap-1 px-3 rounded-lg">
             <i className="text-lg"><FaRegPaperPlane /></i>
@@ -74,19 +75,21 @@ const Comment_Rely = () => {
         commentData.map((comment, index) => (
           (comment.productId === id) && (
             <div key={index} className="user-image mt-5">
-            <div className="comment-text-user relative p-3  rounded-lg min-h-[70px] mt-2 ml-8">
-            <span className="font-semibold text-base pb-5">{comment.fullname}</span>
+              <div className="comment-text-user relative p-3  rounded-lg min-h-[70px] mt-2 ml-8">
+                <span className="font-semibold text-base pb-5">{comment.fullname}</span>
                 <p className="text-sm text-gray-800">{comment.content}</p>
-            </div>
-        </div> 
+              </div>
+            </div> 
           )
         ))
       ) : (
         <div>
-          <td colSpan={2}>No colors found.</td>
+          <td className="text-sm text-gray-800" colSpan={2}>Chưa có bình luận nào được thêm</td>
         </div>
       )}
-    </>
+    
+  </>
+  
   )
 }
 
