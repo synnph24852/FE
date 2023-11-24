@@ -1,15 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 // import { MyComponent } from "./components";
-import { AdminLayout, HomePages } from "./pages/layout"
-import Product from "./components/admin/Product/Product"
-import Order from "./components/admin/order/order"
-import AddProduct from "./components/admin/Product/AddProduct"
-import Size from "./components/admin/size/size"
-import AddSize from "./components/admin/size/AddSize"
+import { AdminLayout, HomePages } from "./pages/layout";
+import Product from "./components/admin/Product/Product";
+import Order from "./components/admin/order/order";
+import AddProduct from "./components/admin/Product/AddProduct";
+import Size from "./components/admin/size/size";
+import AddSize from "./components/admin/size/AddSize";
 import UpdateProduct from "./components/admin/Product/UpdateProduct";
 import RecycleBin from "./components/admin/Product/recycle-bin";
 import UpdateSize from "./components/admin/size/UpdateSize";
-import ImageProduct from "./components/admin/imageProduct/imageProduct"
+import ImageProduct from "./components/admin/imageProduct/imageProduct";
 import AddImage from "./components/admin/imageProduct/AddImage";
 import HomeAdmin from "./pages/layout/Admin/home_admin";
 import ListComment from "./components/admin/comment/list";
@@ -29,7 +29,6 @@ import ContactEdit from "./components/admin/Contact/edit";
 import AdminInformation from "./components/admin/Inpormation";
 import InformationAdd from "./components/admin/Inpormation/add";
 import InformationEdit from "./components/admin/Inpormation/edit";
-
 
 import AdminUser from "./components/admin/user/user";
 import AdminUserAdd from "./components/admin/user/add";
@@ -56,14 +55,22 @@ import Orderr from "./pages/layout/Users/order/Order";
 import ListCategory from "./pages/layout/Users/List-Category/ListCategory";
 import Signin from "./pages/layout/Users/Signin/signin";
 import Signup from "./pages/layout/Users/Signup/signup";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-
-
+const isAuthenticated = (): boolean => {
+  // const userString = localStorage.getItem("user");
+  // const user = userString ? JSON.parse(userString) : {};
+  const user = JSON.parse(localStorage.getItem("user") || "");
+  return user && user.role.role_name === "admin";
+};
+// console.log(localStorage);
 
 export const routers = createBrowserRouter([
   {
     path: "/",
-    element: <BaseLayout  />,
+    element: <BaseLayout />,
     children: [
       {
         path: "",
@@ -89,36 +96,36 @@ export const routers = createBrowserRouter([
         path: "/list-productsAll",
         element: <Shop_Products />,
       },
-       {
+      {
         path: "/products/:id",
         element: <Detail_Product />,
       },
-     
+
       {
         path: "/cart",
-        element: < Cart />,
+        element: <Cart />,
       },
       {
         path: "/orderr",
-        element: <Orderr/>,
+        element: <Orderr />,
       },
       {
         path: "/category",
-        element: <ListCategory/>,
+        element: <ListCategory />,
       },
     ],
   },
   {
     path: "/signin",
-    element: <Signin/>,
+    element: <Signin />,
   },
   {
     path: "/signup",
-    element: <Signup/>,
+    element: <Signup />,
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: isAuthenticated() ? <AdminLayout /> : <Navigate to="/" />,
     children: [
       {
         path: "product",
@@ -127,8 +134,6 @@ export const routers = createBrowserRouter([
       {
         path: "product/add",
         element: <AddProduct />,
-        
-
       },
       {
         path: "product/:id",
@@ -165,7 +170,7 @@ export const routers = createBrowserRouter([
       },
       {
         path: "imageProduct/update/:id",
-        element: <UpdateImage/>,
+        element: <UpdateImage />,
       },
       {
         path: "/admin",
@@ -237,53 +242,52 @@ export const routers = createBrowserRouter([
       },
       {
         path: "user",
-        element: <AdminUser/>,
+        element: <AdminUser />,
       },
       {
         path: "user/add",
-        element: <AdminUserAdd/>,
+        element: <AdminUserAdd />,
       },
       {
         path: "user/edit/:id",
-        element: <AdminEditUser/>,
+        element: <AdminEditUser />,
       },
       {
         path: "customer",
-        element: <AdminCustomer/>,
+        element: <AdminCustomer />,
       },
       {
         path: "customer/add",
-        element: <AdminCustomerAdd/>,
+        element: <AdminCustomerAdd />,
       },
       {
         path: "customer/edit/:id",
-        element: <AdminCustomerEdit/>,
+        element: <AdminCustomerEdit />,
       },
       {
         path: "role",
-        element: <AdminRole/>,
+        element: <AdminRole />,
       },
       {
         path: "role/add",
-        element: <AdminRoleAdd/>,
+        element: <AdminRoleAdd />,
       },
       {
         path: "role/edit/:id",
-        element: <AdminRoleEdit/>,
+        element: <AdminRoleEdit />,
       },
       {
         path: "order",
-        element: <Order/>,
+        element: <Order />,
       },
       {
         path: "sale",
         element: <SaleAdminPage />,
-    },
-    {
+      },
+      {
         path: "payment",
         element: <PaymentAdmin />,
-    },
-
+      },
     ],
   },
   {

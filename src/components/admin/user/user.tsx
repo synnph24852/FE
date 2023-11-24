@@ -2,7 +2,7 @@ import { useGetUserQuery, useRemoveUserMutation } from "../../../api/user";
 import { IUser } from "@/interfaces/user";
 import { Table, Button, Skeleton, Popconfirm, Alert } from "antd";
 import { Link } from "react-router-dom";
-
+import { useGetRoleQuery } from "@/api/role";
 type Props = {};
 
 const AdminUser = (props: Props) => {
@@ -69,9 +69,7 @@ const AdminUser = (props: Props) => {
     //   key: "addressUser",
     // },
     {
-      render: ({ key: id }: { key: string | number }) => {
-        
-        
+      render: ({ key: id }: { key: string | number }) => {  
         return (
           <>
             <div className="flex space-x-2">
