@@ -21,7 +21,7 @@ const Signup = () => {
   const onFinish = (values: IUser) => {
     signup(values)
       .unwrap()
-      .then(() => navigate("/"));
+      .then(() => navigate("/signin"));
   };
   return (
     <>
@@ -40,8 +40,8 @@ const Signup = () => {
           <div className="md:flex w-full">
             <div className="hidden md:block w-1/2 bg-black py-10 px-10">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVaf_e7v-FyOfDVswXesJXpy8HkKXAgpG8yQ&usqp=CAU"
-                className="w-full"
+                src="https://cf.shopee.vn/file/67461f130625a015fcfff3180aa1c0a9"
+                className="w-full  rounded-3xl"
                 alt=""
               />
             </div>
@@ -142,7 +142,7 @@ const Signup = () => {
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="Nhập mật khẩu"
                           id="password"
-                             {...register("password")}
+                          {...register("password")}
                         />
                       </div>
                     </div>

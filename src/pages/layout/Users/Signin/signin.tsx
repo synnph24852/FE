@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import LoadingOutlined from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
@@ -18,31 +18,29 @@ const Signin: React.FC = () => {
     const navigate = useNavigate();
   
     const onFinish = (data: ISignin) => {
-        signin(data)
-          .unwrap()
-          .then((res) => {
-            if (res && res.user && res.user.role) {
-              // Lưu thông tin đăng nhập vào localStorage sau khi đăng nhập thành công
-              localStorage.setItem("user", JSON.stringify(res.user));
-              if (res.user.role.role_name === "user") {
-                alert("Đăng nhập thành công");
-                navigate("/");
-                console.log(res.user);
-                console.log(localStorage);
-              } else if (res.user.role.role_name === "admin") {
-                alert("Đăng nhập thành công");
-                navigate("/admin");
-                console.log(res.user);
-              } else {
-                alert("Bạn không có quyền truy cập trang này");
-                console.log(res.user.role.role_name);
-                
-              }
+      signin(data)
+        .unwrap()
+        .then((res) => {
+          if (res && res.user && res.user.role) {
+            localStorage.setItem("user", JSON.stringify(res.user));
+            if (res.user.role.role_name === "user") {
+              message.success("Đăng nhập thành công");
+              navigate("/");
+              console.log(res.user);
+              console.log(localStorage);
+            } else if (res.user.role.role_name === "admin") {
+              message.success("Đăng nhập thành công");
+              navigate("/admin");
+              console.log(res.user);
             } else {
-              alert("Đăng nhập không thành công");
+              message.error("Bạn không có quyền truy cập trang này");
+              console.log(res.user.role.role_name);
             }
-          });
-      };
+          } else {
+            message.error("Đăng nhập không thành công, tài khoản hoặc mật khẩu không chính xác");
+          }
+        });
+    };
   
     const onFinishFailed = (errorInfo: any) => {
       console.log("Failed:", errorInfo);
@@ -65,8 +63,8 @@ const Signin: React.FC = () => {
           <div className="md:flex w-full">
             <div className="hidden md:block w-1/2 bg-black py-10 px-10 d-flex justify-content-center">
               <img
-                src="https://bouncin.net/storage/posts/1345/YFyAqfIwqKJ1SVW9M11UqRRZjpnIdYLJQgYTzDpf.jpeg"
-                className=""
+                src="https://cf.shopee.vn/file/7a691fe13b7eb2771b61a0de923ad312"
+                className="rounded-3xl"
                 alt=""
               />
             </div>
