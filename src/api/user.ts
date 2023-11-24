@@ -75,12 +75,20 @@ const userApi = createApi({
                 body: user
             }),
             invalidatesTags: ['User']
-        })
+        }),
+        updateUserRole: builder.mutation<any, any>({
+            query: (user) => ({
+                url: `/userrole/${user._id}`,
+                method: "PUT",
+                body: user
+            }),
+            invalidatesTags: ['User']
+        }),
     })
 });
 
 export const {
-    useGetUserQuery, useGetUserByIdQuery, useAddUserMutation, useUpdateUserMutation, useRemoveUserMutation, useSigninUserMutation, useSignupUserMutation, useSignoutMutation
+    useGetUserQuery, useGetUserByIdQuery, useAddUserMutation, useUpdateUserMutation, useRemoveUserMutation, useSigninUserMutation, useSignupUserMutation, useSignoutMutation, useUpdateUserRoleMutation
 } = userApi;
 export const userReducer = userApi.reducer;
 export default userApi;
