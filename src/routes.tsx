@@ -64,12 +64,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-const isAuthenticated = (): boolean => {
-  // const userString = localStorage.getItem("user");
-  // const user = userString ? JSON.parse(userString) : {};
-  const user = JSON.parse(localStorage.getItem("user") || "");
-  return user && user.role.role_name === "admin";
-};
+
 // console.log(localStorage);
 
 export const routers = createBrowserRouter([
@@ -130,7 +125,7 @@ export const routers = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: isAuthenticated() ? <AdminLayout /> : <Navigate to="/" />,
+    element:  <AdminLayout/>,
     children: [
       {
         path: "product",
