@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import { Button, Table, Spin, notification } from 'antd';
+import { Button, Table, Spin, notification,Input } from 'antd';
 import { DeleteTwoTone, EditOutlined } from '@ant-design/icons';
 import { useGetProductsQuery, useRemoveProductMutation } from '../../../api/product';
 import { IProduct } from '../../../interfaces/product';
@@ -15,6 +15,7 @@ const Product = (props: Props) => {
     const { data: productData ,refetch} = useGetProductsQuery();
     const [softDeleteProduct] = useRemoveProductMutation();
     const [loading, setLoading] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const handleSoftDelete = async (id: string) => {
         setLoading(true);
         try {
@@ -33,15 +34,17 @@ const Product = (props: Props) => {
             setLoading(false);
         }
     }; 
-    const dataSource = productData?.products?.map((product: any) => ({
+    const handleSearch = (value: string) => {
+        setSearchTerm(value);
+    };
+
+    const dataSource = productData?.products?.filter((product: IProduct) => product.name.toLowerCase().includes(searchTerm.toLowerCase())).map((product: any) => ({
         key: product._id,
         name: product.name,
         image: product.image,
         price: product.price,
         description: product.description,
         trang_thai: product.trang_thai,
-
-
     }));
     console.log(dataSource);
     
@@ -114,14 +117,19 @@ const columns = [
 ];
 return (
     <div>
-        <header className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl">Quản lý sản phẩm</h2>
-            <Button type="primary" danger>
-                <Link to="/admin/product/add">Thêm sản phẩm</Link>
-            </Button>
-        </header>
-        {loading ? <Spin /> : <Table dataSource={dataSource} columns={columns} />}
-    </div>
+    <header className="flex items-center justify-between mb-4">
+        <h2 className="text-2xl">Quản lý sản phẩm</h2>
+        <Input.Search
+            placeholder="Search product"
+            onSearch={handleSearch}
+            style={{width: 600}}
+        />
+        <Button type="primary" danger>
+            <Link to="/admin/product/add">Thêm sản phẩm</Link>
+        </Button>
+    </header>
+    {loading ? <Spin /> : <Table dataSource={dataSource} columns={columns} />}
+</div>
 );
               
 }

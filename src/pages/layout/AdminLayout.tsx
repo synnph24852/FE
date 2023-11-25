@@ -101,6 +101,16 @@ const AdminLayout: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const [searchTerm, setSearchTerm] = useState('');
+
+const handleInputChange = (event) => {
+  setSearchTerm(event.target.value);
+};
+
+const handleSearch = () => {
+  // Implement your search functionality here
+  console.log(`Searching for "${searchTerm}"`);
+};
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -112,22 +122,25 @@ const AdminLayout: React.FC = () => {
         <header className="bg-gray-50">
           <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
             <div className="flex items-center sm:justify-between sm:gap-4">
-              <div className="relative hidden sm:block">
-                <label className="sr-only" form="search"> Search </label>
+            <div className="relative hidden sm:block">
+  <label className="sr-only" form="search"> Search </label>
 
-                <input
-                  className="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
-                  id="search"
-                  type="search"
-                  placeholder="Search website..."
-                />
+  <input
+    className="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
+    id="search"
+    type="search"
+    placeholder="Search website..."
+    value={searchTerm}
+    onChange={handleInputChange}
+  />
 
-                <button
-                  type="button"
-                  className="absolute end-1 top-1/2 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
-                >
-                  <span className="sr-only">Search</span>
-                  <svg
+  <button
+    type="button"
+    className="absolute end-1 top-1/2 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
+    onClick={handleSearch}
+  >
+    <span className="sr-only">Search</span>
+    <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4"
                     fill="none"
@@ -141,8 +154,8 @@ const AdminLayout: React.FC = () => {
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                   </svg>
-                </button>
-              </div>
+  </button>
+</div>
 
               <div
                 className="flex flex-1 items-center justify-between gap-8 sm:justify-end"

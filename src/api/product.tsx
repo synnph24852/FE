@@ -54,7 +54,10 @@ const productApi = createApi({
                 url: `/products/hard-delete/${id}`,
                 method: 'DELETE',
             }),
-        })
+        }),
+        searchProducts: builder.query<IProduct[], string>({
+            query: (name) => `/products/${name}`,
+          }),
 
     })
 });
@@ -67,7 +70,9 @@ export const {
     useRemoveProductMutation,
     useGetDeletedProductsQuery, // new hook for getting deleted products
     useRestoreProductMutation ,// new hook for restoring a product
-    usePermanentDeleteProductMutation
+    usePermanentDeleteProductMutation,
+    useSearchProductsQuery,
+
 } = productApi;
 
 export const productReducer = productApi.reducer;

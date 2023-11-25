@@ -25,7 +25,7 @@ const UpdateProduct: React.FC = () => {
     const { data: category } = useGetCategorysQuery();
     const { data: color } = useGetColorsQuery();
     const { data: sale } = useGetAllSalesQuery();
-    console.log(data?.product.image);
+    console.log(data);
     const [currentProductId, setCurrentProductId] = useState<string | null>(null)
     
     const [editedImg, setEditedImg] = useState<any>([]);
