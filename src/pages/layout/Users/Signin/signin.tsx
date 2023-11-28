@@ -29,8 +29,8 @@ const Signin: React.FC = () => {
               console.log(res.user);
               console.log(localStorage);
             } else if (res.user.role.role_name === "admin") {
-              message.success("Đăng nhập thành công");
-              navigate("/admin");
+              message.success("Đăng nhập thành công với vai trò quản trị");
+              navigate("/");
               console.log(res.user);
             } else {
               message.error("Bạn không có quyền truy cập trang này");
