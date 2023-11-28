@@ -1,5 +1,7 @@
-import { IRole } from "./role";
 export interface IUser {
+    value: unknown;
+	messages(arg0: string, messages: unknown): unknown;
+	data: IUser;
     _id: string | number;
     name: string;
     fullname: string;
@@ -12,4 +14,6 @@ export interface IUser {
     image_url: string; 
     favoriteProducts: string[]; 
     addressUser: string[];     
+    newPassword:string,
+    oldPassword:string
 }

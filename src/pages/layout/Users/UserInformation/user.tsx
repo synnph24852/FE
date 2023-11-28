@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, Dropdown, Popover, Button, message } from "antd";
 import { SettingOutlined, LogoutOutlined } from "@ant-design/icons";
-
+import ChangePassword from "./changePassword";
 const { Item, Divider } = Menu;
 
 const UserInformation: React.FC = () => {
@@ -10,11 +10,22 @@ const UserInformation: React.FC = () => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const [showMenu, setShowMenu] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
+
+  const handleShowChangePassword = () => {
+    setShowChangePassword(true);
+    setShowMenu(false);
+    setShowProfile(false);
+  };
+
+  const handleHideChangePassword = () => {
+    setShowChangePassword(false);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     message.success("Đã đăng xuất thành công");
-    navigate('/');
+    navigate("/");
   };
 
   const handleMenuClick = (e: any) => {
@@ -33,12 +44,10 @@ const UserInformation: React.FC = () => {
   const handleProfileClose = () => {
     setShowProfile(false);
   };
-
   const formatDate = (dateString: string) => {
     const options = { year: "numeric", month: "numeric", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
   const profileFields = [
     { label: "Tên", value: user.name },
     { label: "Họ Và Tên", value: user.fullname },
@@ -46,10 +55,14 @@ const UserInformation: React.FC = () => {
     { label: "Ngày sinh", value: formatDate(user.ngaysinh) },
     // Thêm các trường thông tin người dùng khác vào đây
   ];
-
   const menu = (
     <Menu onClick={handleMenuClick}>
       <Item key="profile">Hồ sơ</Item>
+      <Item key="changePassword" onClick={handleShowChangePassword}>
+        <span>
+          <SettingOutlined /> Đổi mật khẩu
+        </span>
+      </Item>
       <Divider />
       {user?.role?.role_name === "admin" ? (
         <Item key="admin">
@@ -66,7 +79,6 @@ const UserInformation: React.FC = () => {
       </Item>
     </Menu>
   );
-
   const profileContent = (
     <div>
       {profileFields.map((field, index) => (
@@ -86,7 +98,7 @@ const UserInformation: React.FC = () => {
             overlay={menu}
             onVisibleChange={handleVisibleChange}
             visible={showMenu}
-            trigger={["click"]} // Chỉ hiển thị menu khi người dùng nhấp chuột
+            trigger={["click"]}
           >
             <button
               type="button"
@@ -105,12 +117,26 @@ const UserInformation: React.FC = () => {
             </button>
           </Dropdown>
 
+          {showChangePassword && (
+            <Popover
+              visible={showChangePassword}
+              content={
+                <ChangePassword
+                  handleHideChangePassword={handleHideChangePassword}
+                />
+              }
+              trigger="click"
+              placement="bottom"
+            ></Popover>
+          )}
+
           <Popover
             visible={showProfile}
             content={profileContent}
             title="Thông tin người dùng"
             trigger="click"
             onVisibleChange={handleProfileClose}
+            placement="bottom"
           ></Popover>
         </div>
       ) : (
