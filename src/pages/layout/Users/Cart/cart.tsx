@@ -12,7 +12,7 @@ const Cart = () => {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
+// 
     const handleRemove = (id: string) => {
         Swal.fire({
             position: "center",
