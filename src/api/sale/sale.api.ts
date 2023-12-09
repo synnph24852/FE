@@ -56,7 +56,7 @@ const saleApi = createApi({
     }),
 });
 
-// sss
+// sssdssssssssssss
 
 export const { useGetAllSalesQuery, useGetSaleByIdQuery, useDecreaseSaleMutation, useNewSaleMutation, useUpdateSaleMutation, useRemoveSaleMutation } =
     saleApi;
