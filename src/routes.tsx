@@ -1,131 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
-// import { MyComponent } from "./components";
-import AdminCategory from "./components/admin/Category";
-import CategoryAdd from "./components/admin/Category/add";
-import CategoryEdit from "./components/admin/Category/edit";
-import ListComment from "./components/admin/comment/list";
-import AdminContact from "./components/admin/Contact";
-import ContactAdd from "./components/admin/Contact/add";
-import ContactEdit from "./components/admin/Contact/edit";
-import AddImage from "./components/admin/imageProduct/AddImage";
-import ImageProduct from "./components/admin/imageProduct/imageProduct";
-import UpdateImage from "./components/admin/imageProduct/UpdateImage";
-import ThemImageTinTuc from "./components/admin/imagetintuc/add";
-import ImageTinTuc from "./components/admin/imagetintuc/list";
-import SuaImageTinTuc from "./components/admin/imagetintuc/update";
-import AdminInformation from "./components/admin/Inpormation";
-import InformationAdd from "./components/admin/Inpormation/add";
-import InformationEdit from "./components/admin/Inpormation/edit";
-import Order from "./components/admin/order/order";
-import AddProduct from "./components/admin/Product/AddProduct";
-import Product from "./components/admin/Product/Product";
-import RecycleBin from "./components/admin/Product/recycle-bin";
-import UpdateProduct from "./components/admin/Product/UpdateProduct";
-import AddSize from "./components/admin/size/AddSize";
-import Size from "./components/admin/size/size";
-import UpdateSize from "./components/admin/size/UpdateSize";
-import ThemTinTuc from "./components/admin/tintuc/add";
-import DanhSachTinTuc from "./components/admin/tintuc/list";
-import SuaTinTuc from "./components/admin/tintuc/update";
-import { AdminLayout, HomePages } from "./pages/layout";
-import HomeAdmin from "./pages/layout/Admin/home_admin";
-
-import AdminCustomerAdd from "./components/admin/customer/add";
-import AdminCustomer from "./components/admin/customer/customer";
-import AdminCustomerEdit from "./components/admin/customer/edit";
-import AdminRoleAdd from "./components/admin/role/add";
-import AdminRoleEdit from "./components/admin/role/edit";
-import AdminRole from "./components/admin/role/role";
-import AdminUserAdd from "./components/admin/user/add";
-import AdminEditUser from "./components/admin/user/edit";
-import AdminUser from "./components/admin/user/user";
-
-import ProductDetail from "./components/admin/Product/ProductDetail";
-import PaymentAdmin from "./components/PaymentAdmin";
-import SaleAdminPage from "./components/SaleAdminPage";
-import BaseLayout from "./pages/layout/HomeLayout";
-import About from "./pages/layout/Users/About/About";
-import Blog from "./pages/layout/Users/Blog/Blog";
-import Blogtintuc from "./pages/layout/Users/Blog/Blogtintuc";
-import Cart from "./pages/layout/Users/Cart/cart";
-import Contact from "./pages/layout/Users/Contact/Contact";
-import Detail_Product from "./pages/layout/Users/Detail-Product/Detail_Product";
-import ListCategory from "./pages/layout/Users/List-Category/ListCategory";
-import Orderr from "./pages/layout/Users/order/Order";
-import Shop_Products from "./pages/layout/Users/Shop-Products/Shop_Products";
-import Signin from "./pages/layout/Users/Signin/signin";
-import Signup from "./pages/layout/Users/Signup/signup";
-
-import AddColor from "./components/admin/color/add";
-import Color from "./components/admin/color/list";
-import UpdateColor from "./components/admin/color/update";
-
-import { Navigate } from "react-router-dom";
-import OrderHistory from "./pages/layout/OrderHistory";
-
-const isAuthenticated = (): boolean => {
-    // const userString = localStorage.getItem("user");
-    // const user = userString ? JSON.parse(userString) : {};
-    if (!localStorage.getItem("user")) return false;
-    const user = JSON.parse(localStorage.getItem("user") || "");
-    return user && user?.role?.role_name === "admin";
-};
-
-// console.log(localStorage);
+import { AdminLayout, ClientLayout } from "./layout";
+import SaleAdminPage from "./pages/Admin/SaleAdminPage";
+import HomePage from "./pages/Main/HomePage";
+import ProductDetailPage from "./pages/Main/ProductDetailPage";
 
 export const routers = createBrowserRouter([
     {
         path: "/",
-        element: <BaseLayout />,
+        element: <ClientLayout />,
         children: [
             {
-                path: "",
-                element: <HomePages />,
-            },
-            {
-                path: "/contact",
-                element: <Contact />,
-            },
-            {
-                path: "/about",
-                element: <About />,
-            },
-            {
-                path: "/blog",
-                element: <Blog />,
-            },
-            {
-                path: "/blog/:id",
-                element: <Blogtintuc />,
-            },
-            {
-                path: "/list-productsAll",
-                element: <Shop_Products />,
+                index: true,
+                element: <HomePage />,
             },
             {
                 path: "/products/:id",
-                element: <Detail_Product />,
-            },
-
-            {
-                path: "/cart",
-                element: <Cart />,
-            },
-            {
-                path: "/order",
-                element: <Orderr />,
-            },
-            {
-                path: "/order-history",
-                element: <OrderHistory />,
-            },
-            {
-                path: "/category",
-                element: <ListCategory />,
+                element: <ProductDetailPage />,
             },
         ],
     },
     {
+<<<<<<< HEAD
         path: "/signin",
         element: <Signin />,
     },
@@ -301,15 +196,26 @@ export const routers = createBrowserRouter([
             {
                 path: "order",
                 element: <Order />,
+=======
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+            {
+                index: true,
+                element: "Page admin here",
+>>>>>>> origin/main
             },
             {
                 path: "sale",
                 element: <SaleAdminPage />,
             },
+<<<<<<< HEAD
             {
                 path: "payment",
                 element: <PaymentAdmin />,
             },
+=======
+>>>>>>> origin/main
         ],
     },
     {

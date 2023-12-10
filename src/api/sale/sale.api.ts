@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISale } from "../../types/index";
+import { ISale } from "../../types";
 
 const saleApi = createApi({
     reducerPath: "saleApi",
@@ -37,15 +37,6 @@ const saleApi = createApi({
             },
             invalidatesTags: ["Sales"],
         }),
-        decreaseSale: builder.mutation<{ data: ISale; message: string }, string>({
-            query: (id) => {
-                return {
-                    url: "/api/sales/decrease-sale/" + id,
-                    method: "PATCH",
-                };
-            },
-            invalidatesTags: ["Sales"],
-        }),
         removeSale: builder.mutation<{ data: ISale; message: string }, string>({
             query: (id) => ({
                 url: "/api/sales/" + id,
@@ -56,8 +47,5 @@ const saleApi = createApi({
     }),
 });
 
-// sssdssssssssssss
-
-export const { useGetAllSalesQuery, useGetSaleByIdQuery, useDecreaseSaleMutation, useNewSaleMutation, useUpdateSaleMutation, useRemoveSaleMutation } =
-    saleApi;
+export const { useGetAllSalesQuery, useGetSaleByIdQuery, useNewSaleMutation, useUpdateSaleMutation, useRemoveSaleMutation } = saleApi;
 export default saleApi;

@@ -1,5 +1,5 @@
 export interface ISize {
-    _id?: number| string;
-    name: number;
+    id: number| string;
+    name: string;
     quantity: number
 }
